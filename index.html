@@ -6,15 +6,17 @@
 
 <body>
 
-  Hello world !
+  Music Assistant oAuth Redirect page.
 
   <footer>
 
     <script>
       'use strict';
-      const redirect_url = decodeURIComponent(window.location.href.split("/", 4)[3]);
-      console.log(redirect_url);
-      // window.location.replace(redirect_url);
+      
+      const urlParams = new URLSearchParams(window.location.search);
+      const redirect_url = decodeURIComponent(urlParams.get('state'));
+      console.log("Redirect URL", redirect_url);
+      window.location.replace(redirect_url + '?code=' + urlParams.get('code'));
     </script>
   </footer>
 </body>
