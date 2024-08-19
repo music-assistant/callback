@@ -13,10 +13,9 @@
     <script>
       'use strict';
       const urlParams = new URLSearchParams(window.location.search);
-      const redirect_url = decodeURIComponent(urlParams.get('state') || '');
-      console.log('referrer', document.referrer);
-      const validOrigin = !document.referrer || document.referrer.contains('spotify.com');
-      const validDest = redirect_url.contains(':') && redirect_url.contains('/callback/');
+      const redirect_url = decodeURIComponent(urlParams.get('state'));
+      const validOrigin = document.referrer?.includes('spotify.com');
+      const validDest = redirect_url.includes(':') && redirect_url.includes('/callback/');
       if (validOrigin && validDest)
       {
         window.location.replace(redirect_url + '?code=' + urlParams.get('code'));
