@@ -12,11 +12,14 @@
 
     <script>
       'use strict';
-      
-      const urlParams = new URLSearchParams(window.location.search);
       const redirect_url = decodeURIComponent(urlParams.get('state'));
-      console.log("Redirect URL", redirect_url);
-      window.location.replace(redirect_url + '?code=' + urlParams.get('code'));
+      const validOrigin = document.referrer.contains('spotify.com');
+      const validDest = redirect_url.contains(':') && redirect_url.contains('/callback/');
+      if (validOrigin && validDest)
+      {
+        const urlParams = new URLSearchParams(window.location.search);
+        window.location.replace(redirect_url + '?code=' + urlParams.get('code'));
+      }
     </script>
   </footer>
 </body>
