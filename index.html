@@ -14,7 +14,8 @@
       'use strict';
       const urlParams = new URLSearchParams(window.location.search);
       const redirect_url = decodeURIComponent(urlParams.get('state') || '');
-      const validOrigin = document.referrer.contains('spotify.com');
+      console.log('referrer', document.referrer);
+      const validOrigin = !document.referrer || document.referrer.contains('spotify.com');
       const validDest = redirect_url.contains(':') && redirect_url.contains('/callback/');
       if (validOrigin && validDest)
       {
