@@ -47,23 +47,22 @@
   <footer>
 
     <script>
-        'use strict';
-        const urlParams = new URLSearchParams(window.location.search);
-        const redirect_url = decodeURIComponent(urlParams.get('state'));
-        const code = urlParams.get('code');
-        const validOrigin = document.referrer?.includes('spotify.com');
-        const validDest = redirect_url?.includes(':') && redirect_url?.includes('/callback/');
+      'use strict';
+      const urlParams = new URLSearchParams(window.location.search);
+      const redirect_url = decodeURIComponent(urlParams.get('state'));
+      const validOrigin = document.referrer?.includes('spotify.com');
+      const validDest = redirect_url.includes(':') && redirect_url.includes('/callback/');
 
-        const finalUrl = redirect_url + '?code=' + code;
+      const finalUrl = redirect_url + '?code=' + code;
 
-        if (validOrigin && validDest) {
-            window.location.replace(finalUrl);
-        } else {
-            // Show manual link if automatic redirect doesn't work
-            document.getElementById('manual-link').style.display = 'block';
-            const linkElement = document.getElementById('redirect-link');
-            linkElement.href = finalUrl;
-        }
+      if (validOrigin && validDest) {
+        window.location.replace(finalUrl);
+      } else {
+        // Show manual link if automatic redirect doesn't work
+        document.getElementById('manual-link').style.display = 'block';
+        const linkElement = document.getElementById('redirect-link');
+        linkElement.href = finalUrl;
+      }
     </script>
   </footer>
 </body>
